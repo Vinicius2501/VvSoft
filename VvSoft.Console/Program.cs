@@ -8,13 +8,13 @@ using(AppDbContext context = new AppDbContext())
     context.Database.EnsureCreated();
 
     Console.WriteLine("Criando base de departamento \n");
-    CriarDepartamento(context);
+    //CriarDepartamento(context);
     Console.WriteLine("Base de departamento criado");
 }
 
 Console.ReadKey();
 
-void CriarDepartamento(AppDbContext context)
+/*void CriarDepartamento(AppDbContext context)
 {
     var departamento = new Departamento
     {
@@ -23,4 +23,4 @@ void CriarDepartamento(AppDbContext context)
     };
     context.Departamentos.Add(departamento);
     context.SaveChanges();
-}
+}*/

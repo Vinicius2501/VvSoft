@@ -15,6 +15,8 @@ namespace VvSoft.Domain.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.HasDefaultSchema("VvSoft");
+
             modelBuilder.Entity<Departamento>(builder =>
             {
                 builder.ToTable("Departamentos");
@@ -28,10 +30,21 @@ namespace VvSoft.Domain.Context
                 builder.Property(d => d.Descricao)
                 .HasColumnType("nvarchar(255)")
                 .IsRequired();
-            }
 
+                builder.Property(d => d.CriadoEm)
+                .HasDefaultValueSql("GETDATE()");
+
+                builder.HasData(
+                        new Departamento { DepartamentoId = 1, Nome = "Desenvolvimento", Descricao = "Desenvolvimento de Projetos" },
+                        new Departamento { DepartamentoId = 2, Nome = "Financeiro", Descricao = "Gestão de finanças" },
+                        new Departamento { DepartamentoId = 3, Nome = "Marketing", Descricao = "Promoção de produtos" },
+                        new Departamento { DepartamentoId = 4, Nome = "Recursos Humanos", Descricao = "Recursos Humanos" },
+                        new Departamento { DepartamentoId = 5, Nome = "Suporte", Descricao = "Atendimento ao cliente" }
+
+                    );
+
+                }
             );
-                
         }
     }
 }
