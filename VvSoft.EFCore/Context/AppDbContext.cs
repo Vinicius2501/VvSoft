@@ -12,5 +12,26 @@ namespace VvSoft.Domain.Context
         {
             optionsBuilder.UseSqlServer(AppConfig.GetConnection());
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Departamento>(builder =>
+            {
+                builder.ToTable("Departamentos");
+
+                builder.HasKey(d => d.DepartamentoId);
+
+                builder.Property(d => d.Nome)
+                .HasColumnType("nvarchar(100)")
+                .IsRequired();
+
+                builder.Property(d => d.Descricao)
+                .HasColumnType("nvarchar(255)")
+                .IsRequired();
+            }
+
+            );
+                
+        }
     }
 }
