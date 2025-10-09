@@ -10,7 +10,7 @@ namespace VvSoft.EFCore
     {
         public static string GetConnection()
         {
-            return "Data Source=vinicius;Initial Catalog=VvSoftDataBase;Integrated Security=True;TrustServerCertificate=True;";
+            return "Data Source=<secret>;Initial Catalog=<secret>;Integrated Security=True;TrustServerCertificate=True;";
         }
     }
 }
