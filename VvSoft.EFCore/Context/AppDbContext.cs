@@ -7,6 +7,7 @@ namespace VvSoft.Domain.Context
     public class AppDbContext : DbContext
     {
         public DbSet<Departamento> Departamentos { get; set; }
+        public DbSet<Funcionario> Funcionarios { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -44,6 +45,28 @@ namespace VvSoft.Domain.Context
                     );
 
                 }
+            );
+
+            modelBuilder.Entity<Funcionario>(builder =>
+            {
+                builder.ToTable("Funcionarios");
+
+                builder.HasKey(f => f.FuncionarioId);
+
+                builder.Property(f => f.Nome)
+                .HasColumnType("nvarchar(255)")
+                .IsRequired();
+
+                builder.Property(f => f.Cargo)
+                .HasColumnType("nvarchar(100)")
+                .IsRequired();
+
+                builder.Property(f => f.CriadoEm)
+                .HasDefaultValueSql("GETDATE()");
+
+                builder.Property(f => f.AtualizandoEm)
+                .HasDefaultValueSql("GETDATE()");
+            }
             );
         }
     }
