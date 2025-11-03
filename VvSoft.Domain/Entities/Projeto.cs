@@ -18,7 +18,7 @@ namespace VvSoft.Domain.Entities
         public DateTime DataFim {  get; set; }
         public StatusProjeto Status { get; set; }
         public ICollection<FuncionarioProjeto> FuncionarioProjetos { get; set; } = new List<FuncionarioProjeto>();
-        public int ClientId { get; set; }
+        public int ClienteId { get; set; }
         public Cliente? Cliente { get; set; }
     }
 }
