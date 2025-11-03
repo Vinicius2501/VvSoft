@@ -13,6 +13,8 @@ namespace VvSoft.Domain.Context
         public DbSet<Projeto> Projetos { get; set; }
         public DbSet<FuncionarioProjeto> FuncionarioProjetos { get; set; }
 
+        public DbSet<Cliente> Clientes { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(AppConfig.GetConnection());
@@ -221,6 +223,37 @@ namespace VvSoft.Domain.Context
             );
 
             modelBuilder.Entity<FuncionarioProjeto>().HasKey(fp => new { fp.FuncionarioId, fp.ProjetoId });
+
+            modelBuilder.Entity<Cliente>(builder =>
+                {
+                    builder.Property(c => c.Nome)
+                    .HasMaxLength(100)
+                    .IsRequired();
+
+                    builder.Property(c => c.Email)
+                    .HasMaxLength(200)
+                    .IsRequired();
+
+                    builder.Property(c => c.Telefone)
+                    .HasMaxLength(50)
+                    .IsRequired();
+
+                    builder.Property(c => c.CriadoEm)
+                    .HasDefaultValueSql("GETDATE()");
+
+                    builder.Property(c => c.AtualizadoEm)
+                    .HasDefaultValueSql("GETDATE()");
+
+                    builder.HasData(
+                        new Cliente { ClienteId = 1, Nome = "Grupo ABroad SA", Email = "abroad@email.com", Telefone = "55-11 99980-0099"},
+                        new Cliente { ClienteId = 2, Nome = "Construtora ABC", Email = "abcconstru@email.com", Telefone = "55-31 98957-1022"},
+                        new Cliente { ClienteId = 3, Nome = "EduFuture Corp.", Email = "edufuture@email.com", Telefone = "55-11 98750-4422"},
+                        new Cliente { ClienteId = 4, Nome = "Tech Innovators Ltda", Email = "innovators@email.com", Telefone = "55-11 99950-9622"},
+                        new Cliente { ClienteId = 5, Nome = "Health Solutions Inc.", Email = "healthsolutions@email.com", Telefone = "55-21 99852-9655"}
+
+                    );
+                }
+            );
 
         }
     }
