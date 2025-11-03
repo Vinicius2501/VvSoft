@@ -6,6 +6,7 @@ using(AppDbContext context = new AppDbContext())
     context.Database.EnsureDeleted();
     Console.WriteLine("Criando banco de dados \n");
     context.Database.EnsureCreated();
+    Console.WriteLine("Banco de dados criado \n");
 }
 
 Console.ReadKey();
