@@ -15,11 +15,9 @@ namespace VvSoft.Domain.Entities
         public DateOnly DataContratacao { get; set; }
         public int DepartamentoId { get; set; }
         public Departamento? Departamento { get; set; }
-
         public FuncionarioDetalhe? FuncionarioDetalhe { get; set; }
         public ICollection<FuncionarioProjeto> FuncionarioProjetos { get; set; } = new List<FuncionarioProjeto>();
         public DateTime CriadoEm { get; set; }
         public DateTime AtualizandoEm { get; set; }
-
     }
 }
